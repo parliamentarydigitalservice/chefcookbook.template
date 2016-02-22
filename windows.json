@@ -79,6 +79,27 @@
         "version": "0.0.1",
         "created_at": "{{timestamp}}"
       }
+    },
+    {
+      "type": "atlas",
+      "token": "{{user `atlas_token`}}",
+      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
+      "artifact_type": "virtualbox.image",
+      "metadata": {
+        "version": "0.0.1",
+        "created_at": "{{timestamp}}"
+      }
+    },
+    {
+      "type": "atlas",
+      "token": "{{user `atlas_token`}}",
+      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
+      "artifact_type": "vagrant.box",
+      "metadata": {
+        "version": "0.0.1",
+        "created_at": "{{timestamp}}",
+        "provider": "virtualbox"
+      }
     }
   ]
 }
