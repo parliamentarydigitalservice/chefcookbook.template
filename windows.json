@@ -59,6 +59,7 @@
     {
       "type":               "chef-solo",
       "skip_install":       true,
+      "guest_os_type":      "windows",
       "cookbook_paths":     ["cookbooks"],
       "run_list":           ["core::default"]
     },
