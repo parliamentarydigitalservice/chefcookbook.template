@@ -2,7 +2,7 @@
   "variables": {
     "aws_access_key":    "{{env `AWS_ACCESS_KEY`}}",
     "aws_secret_key":    "{{env `AWS_SECRET_KEY`}}",
-    "atlas_username":    "{{env `ATLAS_USERNAME`}}",
+    "atlas_username":    "swade1987",
     "atlas_token":       "AGatG6zR7NjPRg.atlasv1.JrueNghrDyMItxjyzeotL87l26ymHb9MLzTlkyaf5joZH5cMg0kpViaR3qCr9iDOE9Y",
     "name":              "aws-windows-base",
     "region":            "us-west-2",
@@ -41,7 +41,7 @@
       "winrm_timeout":   "20m",
       "ssh_private_ip":  "false",
       "user_data_file":  "{{user `user_data_file`}}",
-      "ami_name":        "{{user `name`}}",
+      "ami_name":        "{{user `name`}} {{timestamp}}",
       "ami_description": "{{user `name`}} AMI",
       
       "run_tags": { "ami-create": "{{user `name`}}" },
@@ -75,13 +75,9 @@
       "artifact": "{{user `atlas_username`}}/{{user `name`}}",
       "artifact_type": "amazon.ami",
       "metadata": {
+        "version": "0.0.1",
         "created_at": "{{timestamp}}"
       }
-    },
-    {
-      "type": "vagrant",
-      "keep_input_artifact": true,
-      "output": "windows2012r2-base.box"
     }
   ]
 }
