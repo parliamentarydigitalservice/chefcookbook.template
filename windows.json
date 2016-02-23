@@ -1,5 +1,6 @@
 {
   "variables": {
+    "version":           "{{env `VERSION`}}",
     "aws_access_key":    "{{env `AWS_ACCESS_KEY`}}",
     "aws_secret_key":    "{{env `AWS_SECRET_KEY`}}",
     "atlas_username":    "swade1987",
@@ -53,7 +54,8 @@
     {
       "type": "powershell",
       "scripts": [
-        "{{user `scripts_dir`}}/install_chef.ps1"
+        "{{user `scripts_dir`}}/install_chef.ps1",
+        "{{user `scripts_dir`}}/install_chocolatey.ps1"
       ]
     },
     {
@@ -74,20 +76,10 @@
       "type": "atlas",
       "token": "{{user `atlas_token`}}",
       "artifact": "{{user `atlas_username`}}/{{user `name`}}",
-      "artifact_type": "amazon.ami",
+      "artifact_type": "vagrant.box",
       "metadata": {
-        "version": "0.0.1",
-        "created_at": "{{timestamp}}"
-      }
-    },
-    {
-      "type": "atlas",
-      "token": "{{user `atlas_token`}}",
-      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
-      "artifact_type": "virtualbox.image",
-      "metadata": {
-        "version": "0.0.1",
-        "created_at": "{{timestamp}}"
+        "provider": "vmware_desktop",
+        "version": "{{user `version`}}"
       }
     },
     {
@@ -96,10 +88,24 @@
       "artifact": "{{user `atlas_username`}}/{{user `name`}}",
       "artifact_type": "vagrant.box",
       "metadata": {
-        "version": "0.0.1",
-        "created_at": "{{timestamp}}",
-        "provider": "virtualbox"
+        "provider": "virtualbox",
+        "version": "{{user `version`}}"
       }
+    },
+    {
+      "type": "atlas",
+      "token": "{{user `atlas_token`}}",
+      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
+      "artifact_type": "amazon.ami",
+      "metadata": {
+        "version": "{{user `version`}}",
+        "created_at": "{{timestamp}}"
+      }
+    },
+    {
+      "type": "vagrant",
+      "keep_input_artifact": false,
+      "output": "windows_base.box"
     }
   ]
 }
