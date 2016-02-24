@@ -69,20 +69,21 @@
       "type": "windows-restart",
       "restart_command": "powershell \"& {(Get-WmiObject win32_operatingsystem).LastBootUpTime > C:\\ProgramData\\lastboot.txt; Restart-Computer -force}\"",
       "restart_check_command": "powershell -command \"& {if ((get-content C:\\ProgramData\\lastboot.txt) -eq (Get-WmiObject win32_operatingsystem).LastBootUpTime) {Write-Output 'Waiting for restart'; start-sleep 600} else {Write-Output 'Restart complete'}}\""
+    },
+    {
+      "type": "powershell",
+      "scripts": [
+        "{{user `scripts_dir`}}/sysprep_set_ec2_config.ps1",
+        "{{user `scripts_dir`}}/sysprep_bundleconfig.ps1",
+        "{{user `scripts_dir`}}/sysprep_defrag_c_drive.ps1"
+      ]
     }
   ],
   "post-processors": [
-    {
-      "type": "atlas",
-      "token": "{{user `atlas_token`}}",
-      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "vmware_desktop",
-        "version": "{{user `version`}}"
-      }
-    },
-    {
+    [{
+      "type": "vagrant",
+      "output": "vagrant.box"
+    },{
       "type": "atlas",
       "token": "{{user `atlas_token`}}",
       "artifact": "{{user `atlas_username`}}/{{user `name`}}",
@@ -91,21 +92,6 @@
         "provider": "virtualbox",
         "version": "{{user `version`}}"
       }
-    },
-    {
-      "type": "atlas",
-      "token": "{{user `atlas_token`}}",
-      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
-      "artifact_type": "amazon.ami",
-      "metadata": {
-        "version": "{{user `version`}}",
-        "created_at": "{{timestamp}}"
-      }
-    },
-    {
-      "type": "vagrant",
-      "keep_input_artifact": false,
-      "output": "windows_base.box"
-    }
+    }]
   ]
 }
