@@ -9,7 +9,7 @@
     "region":            "us-west-2",
     "vpc_id":            "vpc-6aa9440e",
     "subnet_id":         "subnet-3c042265",
-    "source_ami":        "ami-b74aaed7",
+    "source_ami":        "ami-df8767bf",
     "instance_type":     "t2.micro",
     "winrm_username":    "steven",
     "winrm_password":    "St3v3nw4d3!",
