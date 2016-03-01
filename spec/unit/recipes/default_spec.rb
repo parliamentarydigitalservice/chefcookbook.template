@@ -1,20 +1,15 @@
 #
-# Cookbook Name:: template
+# Cookbook Name:: core
 # Spec:: default
 #
 # Copyright (c) 2016 The Authors, All Rights Reserved.
 
 require 'spec_helper'
 
-describe 'template::default' do
-  context 'When all attributes are default, on an unspecified platform' do
-    let(:chef_run) do
-      runner = ChefSpec::ServerRunner.new
-      runner.converge(described_recipe)
-    end
+describe 'core::default' do
+  let(:chef_run) { ChefSpec::SoloRunner.converge(described_recipe) }
 
-    it 'converges successfully' do
-      expect { chef_run }.to_not raise_error
-    end
+  it 'includes the `chocolatey` recipe' do
+    expect(chef_run).to include_recipe('chocolatey::default')
   end
 end
