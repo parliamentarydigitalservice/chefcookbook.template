@@ -9,5 +9,5 @@
 #  action :install
 #end
 
-Chef::Log.info "Installing chocolatey ..."
+Chef::Log.info 'Installing chocolatey ...'
 include_recipe 'chocolatey'

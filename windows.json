@@ -7,8 +7,8 @@
     "atlas_token":       "AGatG6zR7NjPRg.atlasv1.JrueNghrDyMItxjyzeotL87l26ymHb9MLzTlkyaf5joZH5cMg0kpViaR3qCr9iDOE9Y",
     "name":              "aws-windows-base",
     "region":            "us-west-2",
-    "vpc_id":            "vpc-6aa9440e",
-    "subnet_id":         "subnet-3c042265",
+    "vpc_id":            "vpc-b6ff09d2",
+    "subnet_id":         "subnet-a7ff07c3",
     "source_ami":        "ami-df8767bf",
     "instance_type":     "t2.micro",
     "winrm_username":    "steven",
@@ -61,6 +61,7 @@
     {
       "type":               "chef-solo",
       "skip_install":       true,
+      "cookbook_paths":      ["./berks-cookbooks"],
       "guest_os_type":      "windows",
       "run_list":           ["core::default"]
     },
