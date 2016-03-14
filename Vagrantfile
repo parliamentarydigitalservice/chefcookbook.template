@@ -11,7 +11,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
   config.ssh.forward_agent = true
 
   # Berkshelf setup
-  config.berkshelf.berksfile_path = 'cookbooks/core/Berksfile'
+  config.berkshelf.berksfile_path = 'Berksfile'
   config.berkshelf.enabled = true
 
   # Forward ports..
@@ -19,6 +19,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Execute the cookbook
   config.vm.provision :chef_solo do |chef|
-    chef.add_recipe ‘core’
+    chef.cookbooks_path = ["berks-cookbooks"]
+    chef.add_recipe 'core'
   end
 end
