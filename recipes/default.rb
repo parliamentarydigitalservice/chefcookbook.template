@@ -11,3 +11,7 @@
 
 Chef::Log.info 'Installing chocolatey ...'
 include_recipe 'chocolatey'
+
+Chef::Log.info 'Installing chef-client and set its interval ...'
+node.override['chef_client']['interval'] = '2'
+include_recipe 'chef-client'
