@@ -9,10 +9,10 @@
 #  action :install
 #end
 
-Chef::Log.info 'Installing chocolatey ...'
-include_recipe 'chocolatey'
+if node['platform'] == 'ubuntu'
+  include_recipe 'core::linux'
+end
 
-Chef::Log.info 'Installing chef-client and set its interval ...'
-node.override['chef_client']['interval'] = '2'
-node.override['chef_client']['config']['log_level'] = 'warn'
-include_recipe 'chef-client'
+if node['platform'] == 'windows'
+  include_recipe 'core::windows'
+end

@@ -1,7 +1,7 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-VAGRANTFILE_API_VERSION = "2"
+VAGRANTFILE_API_VERSION = '2'
 
 Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
@@ -19,7 +19,6 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 
   # Execute the cookbook
   config.vm.provision :chef_solo do |chef|
-    chef.cookbooks_path = ["berks-cookbooks"]
     chef.add_recipe 'core'
   end
 end
