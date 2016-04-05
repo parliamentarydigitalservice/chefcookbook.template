@@ -40,6 +40,17 @@ task :upload_to_chef do
   sh 'berks install; berks upload'
 end
 
+task packer: ['cleanup_vendor', 'packer_build_ubuntu']
+
+desc 'Cleanup Vendor directory'
+task :cleanup_vendor do
+  sh 'rm -rf berks-cookbooks/*'
+end
+
+task :packer_build_ubuntu do
+  sh 'berks vendor; packer validate ubuntu.json; packer build ubuntu.json'
+end
+
 task default: ['test', 'integration:vagrant']
 task ci: ['test', 'upload_to_chef']
 task cloud: ['test', 'integration:cloud', 'upload_to_chef']
