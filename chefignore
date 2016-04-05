@@ -1,3 +1,19 @@
+Skip to content
+This repository
+Search
+Pull requests
+Issues
+Gist
+ @swade1987
+ Unwatch 1
+  Star 0
+  Fork 0 swade1987/chef-cookbook-template
+ Code  Issues 0  Pull requests 0  Wiki  Pulse  Graphs  Settings
+Branch: master Find file Copy pathchef-cookbook-template/chefignore
+9b19640  21 days ago
+@swade1987 swade1987 initial commit.
+1 contributor
+RawBlameHistory     103 lines (92 sloc)  1.04 KB
 # Put files/directories that should be ignored in this file when uploading
 # to a chef-server or supermarket.
 # Lines that start with '# ' are comments.
@@ -100,3 +116,5 @@ Strainerfile
 ###########
 .vagrant
 Vagrantfile
+Status API Training Shop Blog About
+© 2016 GitHub, Inc. Terms Privacy Security Contact Help

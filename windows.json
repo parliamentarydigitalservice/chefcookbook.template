@@ -3,8 +3,6 @@
     "version":           "{{env `VERSION`}}",
     "aws_access_key":    "{{env `AWS_ACCESS_KEY`}}",
     "aws_secret_key":    "{{env `AWS_SECRET_KEY`}}",
-    "atlas_username":    "swade1987",
-    "atlas_token":       "AGatG6zR7NjPRg.atlasv1.JrueNghrDyMItxjyzeotL87l26ymHb9MLzTlkyaf5joZH5cMg0kpViaR3qCr9iDOE9Y",
     "name":              "aws-windows-base",
     "region":            "us-west-2",
     "vpc_id":            "vpc-a8a350cc",
@@ -15,15 +13,6 @@
     "winrm_password":    "St3v3nw4d3!",
     "user_data_file":    "packer/scripts/windows/config/ec2_user_data.conf",
     "scripts_dir":       "packer/scripts/windows"
-  },
-  "push": {
-    "name": "{{user `atlas_username`}}/{{user `name`}}",
-    "base_dir": "../../../.",
-    "include": [
-      "{{user `user_data_file`}}",
-      "{{user `scripts_dir`}}/*"
-    ],
-    "vcs": false
   },
   "builders": [
     {
@@ -46,7 +35,8 @@
       "ami_description": "{{user `name`}} AMI",
       
       "run_tags": { "ami-create": "{{user `name`}}" },
-      "tags": { "ami": "{{user `name`}}" },
+      "tags": { "ami": "{{user `name`}}", "created": "{{timestamp}}" 
+          },
       "associate_public_ip_address": true
     }
   ],
@@ -78,20 +68,5 @@
         "{{user `scripts_dir`}}/sysprep_defrag_c_drive.ps1"
       ]
     }
-  ],
-  "post-processors": [
-    [{
-      "type": "vagrant",
-      "output": "vagrant.box"
-    },{
-      "type": "atlas",
-      "token": "{{user `atlas_token`}}",
-      "artifact": "{{user `atlas_username`}}/{{user `name`}}",
-      "artifact_type": "vagrant.box",
-      "metadata": {
-        "provider": "virtualbox",
-        "version": "{{user `version`}}"
-      }
-    }]
   ]
 }
